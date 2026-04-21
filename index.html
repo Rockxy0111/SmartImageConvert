@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolHub | Privacy-First Web Utilities</title>
+    <title>ToolHub | Private Image Converter & Utilities</title>
+    <meta name="description" content="Convert images to WebP, JPG, or PNG locally. Secure, fast, and 100% private.">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo">🛠️ ToolHub</div>
-        <div class="nav-links">
-            <a href="#converter">Converter</a>
-            <a href="#utilities">More Tools</a>
-            <a href="/blog">Guides</a>
+        <div class="nav-container">
+            <div class="logo">🛠️ ToolHub</div>
+            <div class="nav-links">
+                <a href="#converter">Converter</a>
+                <a href="#utilities">Utilities</a>
+                <a href="#">Privacy</a>
+            </div>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>Professional Utils, <span class="blue">Zero Data Leaks.</span></h1>
-        <p>All processing happens in your browser. We never see your files.</p>
+        <h1>Fast File Conversion. <span class="blue">Zero Server Uploads.</span></h1>
+        <p>Professional utilities that run entirely in your browser for maximum security.</p>
     </header>
 
     <section class="main-tool" id="converter">
         <div class="tool-card">
             <div class="tool-header">
-                <h3>Universal Image Converter</h3>
+                <h3>Image Format Converter</h3>
                 <div class="mode-selector">
                     <button class="mode-btn active" data-format="image/webp">to WebP</button>
                     <button class="mode-btn" data-format="image/jpeg">to JPG</button>
@@ -37,51 +41,53 @@
             <div class="drop-zone" id="drop-zone">
                 <input type="file" id="file-input" hidden accept="image/*">
                 <div class="dz-text">
-                    <span class="icon">📁</span>
-                    <p>Drop image to convert</p>
+                    <span class="icon">📥</span>
+                    <p>Drag & Drop Image Here</p>
+                    <span class="or-divider">OR</span>
+                    <button class="upload-trigger-btn">Select Image File</button>
                 </div>
             </div>
 
-            <div id="status"></div>
+            <div id="status" class="status"></div>
+
             <div id="result" class="hidden">
-                <p>Ready: <span id="new-name"></span></p>
-                <a id="download-btn" class="primary-btn">Download Converted File</a>
+                <div class="result-box">
+                    <p><strong>Ready:</strong> <span id="new-name"></span></p>
+                    <a id="download-btn" class="download-btn">Download Converted Image</a>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="utilities-grid" id="utilities">
         <div class="util-card">
-            <span class="util-icon">📝</span>
-            <h4>Word Counter & Analyzer</h4>
-            <p>Paste text to get real-time word count, character count, and reading time.</p>
-            <textarea id="word-input" placeholder="Start typing..."></textarea>
-            <div class="stats-bar">Words: <span id="w-count">0</span> | Read Time: <span id="r-time">0</span>m</div>
-        </div>
-
-        <div class="util-card">
             <span class="util-icon">🔗</span>
             <h4>Base64 Image Encoder</h4>
-            <p>Convert images to Base64 strings for CSS/HTML embedding instantly.</p>
-            <input type="file" id="b64-input" accept="image/*">
-            <button class="copy-btn" id="copy-b64">Copy String</button>
+            <p>Convert any image into a Base64 string for CSS or HTML instantly.</p>
+            <div class="util-action">
+                <input type="file" id="b64-input" accept="image/*" class="custom-file-input">
+                <button class="action-btn" id="copy-b64">Copy Base64 String</button>
+            </div>
         </div>
 
         <div class="util-card">
             <span class="util-icon">🔑</span>
-            <h4>Secure Password Generator</h4>
-            <p>Generate high-entropy passwords locally without sending them to a server.</p>
-            <div class="pass-box">
-                <input type="text" id="pass-output" readonly>
-                <button id="gen-pass">Generate</button>
+            <h4>Secure Password Gen</h4>
+            <p>Generate strong, random passwords locally on your device.</p>
+            <div class="util-action">
+                <input type="text" id="pass-output" readonly placeholder="Click Generate">
+                <button class="action-btn" id="gen-pass">Generate</button>
             </div>
         </div>
     </section>
 
     <footer class="footer">
-        <p>Processed locally via WebAssembly & JS. No cookies, no tracking.</p>
-        <div class="footer-links">
-            <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
+        <div class="footer-content">
+            <p><strong>Safe & Private:</strong> All processing is done locally via JavaScript/WebAssembly. Your files are never sent to a server.</p>
+            <div class="footer-links">
+                <a href="#">About</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact</a>
+            </div>
+            <p class="copyright">© 2026 ToolHub Utility Suite</p>
         </div>
     </footer>
 
