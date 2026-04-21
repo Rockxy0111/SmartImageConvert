@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToolHub | Private Image Converter & Utilities</title>
-    <meta name="description" content="Convert images to WebP, JPG, or PNG locally. Secure, fast, and 100% private.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
@@ -17,14 +16,13 @@
             <div class="nav-links">
                 <a href="#converter">Converter</a>
                 <a href="#utilities">Utilities</a>
-                <a href="#">Privacy</a>
             </div>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>Fast File Conversion. <span class="blue">Zero Server Uploads.</span></h1>
-        <p>Professional utilities that run entirely in your browser for maximum security.</p>
+        <h1>Private Conversion. <span class="blue">No Server Uploads.</span></h1>
+        <p>Your files stay on your device. Fast, secure, and 100% private.</p>
     </header>
 
     <section class="main-tool" id="converter">
@@ -44,7 +42,7 @@
                     <span class="icon">📥</span>
                     <p>Drag & Drop Image Here</p>
                     <span class="or-divider">OR</span>
-                    <button class="upload-trigger-btn">Select Image File</button>
+                    <button type="button" class="upload-trigger-btn" id="fake-btn">Select Image File</button>
                 </div>
             </div>
 
@@ -63,33 +61,23 @@
         <div class="util-card">
             <span class="util-icon">🔗</span>
             <h4>Base64 Image Encoder</h4>
-            <p>Convert any image into a Base64 string for CSS or HTML instantly.</p>
+            <p>Convert image to Base64 locally.</p>
             <div class="util-action">
-                <input type="file" id="b64-input" accept="image/*" class="custom-file-input">
-                <button class="action-btn" id="copy-b64">Copy Base64 String</button>
+                <input type="file" id="b64-input" accept="image/*">
+                <button class="action-btn" id="copy-b64">Copy Base64</button>
             </div>
         </div>
 
         <div class="util-card">
             <span class="util-icon">🔑</span>
             <h4>Secure Password Gen</h4>
-            <p>Generate strong, random passwords locally on your device.</p>
+            <p>16-character secure string generator.</p>
             <div class="util-action">
-                <input type="text" id="pass-output" readonly placeholder="Click Generate">
-                <button class="action-btn" id="gen-pass">Generate</button>
+                <input type="text" id="pass-output" readonly placeholder="Result appears here">
+                <button class="action-btn" id="gen-pass-btn">Generate Password</button>
             </div>
         </div>
     </section>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <p><strong>Safe & Private:</strong> All processing is done locally via JavaScript/WebAssembly. Your files are never sent to a server.</p>
-            <div class="footer-links">
-                <a href="#">About</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact</a>
-            </div>
-            <p class="copyright">© 2026 ToolHub Utility Suite</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
