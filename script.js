@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- IMAGE CONVERTER LOGIC ---
-    let selectedFormat = 'image/webp';
-    const modeBtns = document.querySelectorAll('.mode-btn');
     const fileInput = document.getElementById('file-input');
     const dropZone = document.getElementById('drop-zone');
     const statusText = document.getElementById('status');
     const resultArea = document.getElementById('result');
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    let selectedFormat = 'image/webp';
 
-    // Handle Mode Switching
+    // 1. MODE SWITCHING
     modeBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -17,15 +16,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Make the entire drop-zone clickable
-    dropZone.addEventListener('click', () => {
-        fileInput.click();
+    // 2. CLICK TO UPLOAD
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    // 3. DRAG & DROP LOGIC (The missing part)
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault(); // Stops browser from opening image in new tab
+            e.stopPropagation();
+        }, false);
     });
 
-    // File Input Logic
-    fileInput.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
+    // Visual Feedback
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => {
+            dropZone.classList.add('highlight');
+        }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => {
+            dropZone.classList.remove('highlight');
+        }, false);
+    });
+
+    // Handle Dropped Files
+    dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length > 0) {
+            handleFile(files[0]);
+        }
+    });
+
+    // Handle Selected Files
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            handleFile(e.target.files[0]);
+        }
+    });
+
+    // 4. CORE PROCESSING ENGINE
+    async function handleFile(file) {
+        if (!file.type.startsWith('image/')) {
+            alert("Please upload an image file.");
+            return;
+        }
 
         statusText.innerText = "⚡ Processing locally...";
         resultArea.classList.add('hidden');
@@ -53,12 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
             statusText.innerText = "❌ Error during conversion.";
             console.error(err);
         }
-    });
+    }
 
-    // --- BASE64 ENCODER ---
+    // 5. OTHER UTILITIES (Base64 & Password)
     const b64Input = document.getElementById('b64-input');
     const copyBtn = document.getElementById('copy-b64');
-
     b64Input.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -73,10 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(file);
     });
 
-    // --- PASSWORD GENERATOR ---
     const genBtn = document.getElementById('gen-pass-btn');
     const passOutput = document.getElementById('pass-output');
-
     if (genBtn) {
         genBtn.addEventListener('click', () => {
             const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
