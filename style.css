@@ -1,14 +1,23 @@
-body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; }
-.container { width: 100%; max-width: 500px; text-align: center; }
-.tool-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+:root { --main: #0066ff; --dark: #1a1a1a; --gray: #f4f7f9; }
+body { font-family: 'Segoe UI', system-ui; margin: 0; background: white; color: var(--dark); }
 
-.format-selector { margin-bottom: 20px; }
-select { padding: 8px; border-radius: 5px; border: 1px solid #ccc; width: 120px; }
+.navbar { padding: 20px 50px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; }
+.logo { font-weight: 800; font-size: 1.4rem; }
+.hero { text-align: center; padding: 60px 20px; background: var(--gray); }
+.blue { color: var(--main); }
 
-.drop-zone { border: 2px dashed #007bff; padding: 40px; border-radius: 8px; cursor: pointer; color: #007bff; margin-bottom: 20px; }
-.drop-zone:hover { background: #eef6ff; }
+.tool-card { max-width: 700px; margin: -40px auto 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.mode-selector { display: flex; gap: 10px; margin-top: 15px; }
+.mode-btn { border: 1px solid #ddd; background: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+.mode-btn.active { background: var(--main); color: white; border-color: var(--main); }
 
-.btn { display: inline-block; background: #28a745; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 15px; }
-.hidden { display: none; }
-.status { margin: 10px 0; font-weight: bold; }
-.file-info { background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9rem; }
+.utilities-grid { max-width: 1000px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; }
+.util-card { background: white; border: 1px solid #eee; padding: 25px; border-radius: 12px; }
+.util-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+textarea { width: 100%; height: 80px; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px; padding: 10px; }
+.pass-box { display: flex; gap: 5px; margin-top: 10px; }
+input[type="text"] { flex: 1; padding: 8px; }
+button { cursor: pointer; background: var(--main); color: white; border: none; padding: 8px 15px; border-radius: 5px; }
+
+.footer { text-align: center; padding: 40px; background: var(--dark); color: white; font-size: 0.9rem; }
