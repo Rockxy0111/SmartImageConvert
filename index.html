@@ -3,45 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ConvertX | Private File Converter</title>
+    <title>ToolHub | Privacy-First Web Utilities</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>ConvertX</h1>
-            <p>Convert images locally. No server, no limits.</p>
-        </header>
+    <nav class="navbar">
+        <div class="logo">🛠️ ToolHub</div>
+        <div class="nav-links">
+            <a href="#converter">Converter</a>
+            <a href="#utilities">More Tools</a>
+            <a href="/blog">Guides</a>
+        </div>
+    </nav>
 
-        <div class="tool-box">
-            <div class="format-selector">
-                <label>Convert to:</label>
-                <select id="output-format">
-                    <option value="image/webp">WebP</option>
-                    <option value="image/jpeg">JPG</option>
-                    <option value="image/png">PNG</option>
-                </select>
+    <header class="hero">
+        <h1>Professional Utils, <span class="blue">Zero Data Leaks.</span></h1>
+        <p>All processing happens in your browser. We never see your files.</p>
+    </header>
+
+    <section class="main-tool" id="converter">
+        <div class="tool-card">
+            <div class="tool-header">
+                <h3>Universal Image Converter</h3>
+                <div class="mode-selector">
+                    <button class="mode-btn active" data-format="image/webp">to WebP</button>
+                    <button class="mode-btn" data-format="image/jpeg">to JPG</button>
+                    <button class="mode-btn" data-format="image/png">to PNG</button>
+                </div>
             </div>
 
             <div class="drop-zone" id="drop-zone">
-                <p>Drag & Drop file to convert</p>
-                <input type="file" id="file-input" hidden>
+                <input type="file" id="file-input" hidden accept="image/*">
+                <div class="dz-text">
+                    <span class="icon">📁</span>
+                    <p>Drop image to convert</p>
+                </div>
             </div>
 
-            <div id="status" class="status"></div>
-
+            <div id="status"></div>
             <div id="result" class="hidden">
-                <div class="file-info">
-                    <span id="file-name"></span>
-                    <span class="arrow">→</span>
-                    <span id="new-format-label"></span>
-                </div>
-                <a id="download-btn" class="btn">Download Converted File</a>
+                <p>Ready: <span id="new-name"></span></p>
+                <a id="download-btn" class="primary-btn">Download Converted File</a>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="utilities-grid" id="utilities">
+        <div class="util-card">
+            <span class="util-icon">📝</span>
+            <h4>Word Counter & Analyzer</h4>
+            <p>Paste text to get real-time word count, character count, and reading time.</p>
+            <textarea id="word-input" placeholder="Start typing..."></textarea>
+            <div class="stats-bar">Words: <span id="w-count">0</span> | Read Time: <span id="r-time">0</span>m</div>
+        </div>
+
+        <div class="util-card">
+            <span class="util-icon">🔗</span>
+            <h4>Base64 Image Encoder</h4>
+            <p>Convert images to Base64 strings for CSS/HTML embedding instantly.</p>
+            <input type="file" id="b64-input" accept="image/*">
+            <button class="copy-btn" id="copy-b64">Copy String</button>
+        </div>
+
+        <div class="util-card">
+            <span class="util-icon">🔑</span>
+            <h4>Secure Password Generator</h4>
+            <p>Generate high-entropy passwords locally without sending them to a server.</p>
+            <div class="pass-box">
+                <input type="text" id="pass-output" readonly>
+                <button id="gen-pass">Generate</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Processed locally via WebAssembly & JS. No cookies, no tracking.</p>
+        <div class="footer-links">
+            <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Contact</a>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
